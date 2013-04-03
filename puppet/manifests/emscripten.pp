@@ -27,15 +27,6 @@ class emscripten {
         ensure => directory
     }
 
-    exec { "/usr/bin/add-apt-repository ppa:chris-lea/node.js":
-        alias => "add-nodejs-ppa",
-        cwd => "/root",
-        user => "root",
-        creates => "/etc/apt/sources.list.d/chris-lea-node_js-oneiric.list",
-        require => Package["python-software-properties"],
-        notify => Exec["apt-get-update"]
-    }
-
     exec { "/usr/bin/apt-get update":
         alias => "apt-get-update",
         cwd => "/root",
@@ -45,7 +36,7 @@ class emscripten {
     package {
       $emscripten_deps:
         ensure => "latest",
-        require => [Exec["add-nodejs-ppa"], Exec["apt-get-update"]];
+        require => Exec["apt-get-update"];
 
       "python-software-properties":
         ensure => "latest";
