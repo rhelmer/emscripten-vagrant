@@ -1,7 +1,7 @@
 $emscripten_deps = ["git", "openjdk-6-jdk", "nodejs"]
-$clang_dir = "clang+llvm-3.0-x86_64-linux-Ubuntu-11_10"
+$clang_dir = "clang+llvm-3.2-x86-linux-ubuntu-12.04.tar.gz"
 $clang_filename = "${clang_dir}.tar.gz"
-$clang_url = "http://llvm.org/releases/3.0/${clang_filename}"
+$clang_url = "http://llvm.org/releases/3.2/${clang_filename}"
 
 Exec {
     user => "vagrant",
