@@ -1,7 +1,7 @@
 $emscripten_deps = ["git", "openjdk-6-jdk", "nodejs"]
 $clang_version = "3.2"
-$clang_dir = "clang+llvm-${clang_version}-x86-linux-ubuntu-12.04.tar.gz"
-$clang_filename = "${clang_dir}"
+$clang_dir = "clang+llvm-${clang_version}-x86-linux-ubuntu-12.04"
+$clang_filename = "${clang_dir}.tar.gz"
 $clang_url = "http://llvm.org/releases/${clang_version}/${clang_filename}"
 
 Exec {
@@ -69,6 +69,11 @@ class emscripten {
         environment => ["PWD=/home/vagrant/src", "HOME=/home/vagrant"],
         creates => "/home/vagrant/src/${clang_dir}",
         require => Exec["wget-clang-llvm"]
+    }
+
+    file { "/home/vagrant/src/${clang_dir}"
+        ensure => "link",
+        target => "/home/vagrant/src/clang+llvm-latest"
     }
 }
 
