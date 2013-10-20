@@ -71,9 +71,9 @@ class emscripten {
         require => Exec["wget-clang-llvm"]
     }
 
-    file { "/home/vagrant/src/${clang_dir}"
+    file { "/home/vagrant/src/clang+llvm-latest":
         ensure => "link",
-        target => "/home/vagrant/src/clang+llvm-latest"
+        target => "/home/vagrant/src/${clang_dir}";
     }
 }
 
