@@ -1,4 +1,4 @@
-$jsmess_deps = ["git", "openjdk-6-jdk", "libsdl1.2debian", "libsdl-ttf2.0-0", "libfontconfig1-dev"]
+$jsmess_deps = ["git", "openjdk-6-jdk", "libsdl1.2debian", "libsdl1.2-dev", "libsdl-ttf2.0-0", "libfontconfig1-dev", "gtk+-2.0", "gconf-2.0"]
 
 $clang_version = "3.2"
 $clang_dir = "clang+llvm-${clang_version}-x86-linux-ubuntu-12.04"
@@ -9,8 +9,11 @@ class { 'nodejs':
   version => 'stable',
 }
 
+class vcsrepo { 
+  
+}
+
 class jsmess {
-    include nodejs
 
     file { "/home/vagrant/src":
         owner => vagrant,
@@ -41,13 +44,15 @@ class jsmess {
         mode => 664,
         source => "/vagrant/puppet/files/dot.emscripten"
     }
-
-    exec { "/usr/bin/git clone https://github.com/jsmess/jsmess/":
-        alias => "git-clone-jsmess",
-        cwd => "/home/vagrant/src",
-        require => Package[$jsmess_deps],
-        creates => "/home/vagrant/src/jsmess",
-        timeout => 1200
+    
+    vcsrepo { "/home/vagrant/src/jsmess":
+      alias => "git-clone-jsmess",
+      ensure => latest,
+      provider => git,
+      source => 'git://github.com/jsmess/jsmess.git',
+      revision => 'master',
+      require => Package[$jsmess_deps],
+      owner => "vagrant"
     }
 
     exec { "/usr/bin/git submodule update --init --recursive":
@@ -61,14 +66,14 @@ class jsmess {
     file { '/home/vagrant/src/jsmess/bios':
        ensure => 'link',
        target => '/vagrant/bios',
-       require => Exec['git-clone-jsmess'],
+       require => Vcsrepo['git-clone-jsmess'],
        force => true,
     }
 
     file { '/home/vagrant/src/jsmess/games':
        ensure => 'link',
        target => '/vagrant/games',
-       require => Exec['git-clone-jsmess'],
+       require => Vcsrepo['git-clone-jsmess'],
        force => true,
     }
 
@@ -87,18 +92,13 @@ class jsmess {
         require => Exec["wget-clang-llvm"]
     }
 
-    exec { "/usr/bin/git pull origin master":
-        user => vagrant,
-        alias => "git-pull-jsmess",
-        cwd => "/home/vagrant/src/jsmess",
-        require => Exec["git-clone-jsmess"]
-    }
-
 }
 
 group { "puppet":
   ensure => "present",
 }
 
+include nodejs
+include vcsrepo
 include jsmess
 
