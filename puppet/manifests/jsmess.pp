@@ -43,7 +43,6 @@ class jsmess {
     }
 
     exec { "/usr/bin/git clone https://github.com/jsmess/jsmess/":
-        user => vagrant,
         alias => "git-clone-jsmess",
         cwd => "/home/vagrant/src",
         require => Package[$jsmess_deps],
@@ -52,7 +51,6 @@ class jsmess {
     }
 
     exec { "/usr/bin/git submodule update --init --recursive":
-        user => vagrant,
         alias => "git-submodules-jsmess",
         cwd => "/home/vagrant/src/jsmess",
         require => Package[$jsmess_deps],
@@ -92,6 +90,7 @@ class jsmess {
     exec { "/usr/bin/git pull origin master":
         user => vagrant,
         alias => "git-pull-jsmess",
+        cwd => "/home/vagrant/src/jsmess",
         require => Exec["git-clone-jsmess"]
     }
 
