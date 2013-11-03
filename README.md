@@ -2,6 +2,12 @@ This project will use [Vagrant](http://vagrantup.com) and [Puppet](http://puppet
 install a complete [JSMESS](https://github.com/jsmess/jsmess/) development environment in a
 local [VirtualBox](http://virtualbox.org/) VM.
 
+##FEATURES
+
+* Build and test JSMESS on your machine without spending hours finding, installing and tweaking dependencies! (Instead, type a couple of commands and then wait an hour.)
+* Latest JSMESS code automatically pulled from git at provision time.
+* The `bios/` and `games/` folders in your clone are linked to the same folders in the JSMESS install. Any files dropped into those folders automatically appear on the other side!
+
 ##TODO (i.e. Why It Doesn't Entirely Work Yet)
 
 If you can help with any of the below, please do!
