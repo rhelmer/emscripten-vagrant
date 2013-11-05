@@ -32,6 +32,13 @@ class emscripten {
         alias => "apt-get-update",
         cwd => "/root",
         user => "root",
+        require => Exec["add-nodejs-repo"]
+    }
+
+    exec { "/usr/bin/add-apt-repository ppa:richarvey/nodejs":
+        alias => "add-nodejs-repo",
+        cwd => "/root",
+        user => "root"
     }
 
     package {
