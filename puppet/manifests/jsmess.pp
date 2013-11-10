@@ -45,6 +45,13 @@ class jsmess {
         source => "/vagrant/puppet/files/dot.emscripten"
     }
     
+    file { "/home/vagrant/.bash_profile":
+        owner => vagrant,
+        group => vagrant,
+        mode => 664,
+        source => "/vagrant/puppet/files/dot.bash_profile"
+    }
+
     vcsrepo { "/home/vagrant/src/jsmess":
       alias => "git-clone-jsmess",
       ensure => latest,
