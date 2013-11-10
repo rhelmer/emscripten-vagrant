@@ -1,4 +1,4 @@
-$jsmess_deps = ["git", "openjdk-6-jdk", "libsdl1.2debian", "libsdl1.2-dev", "libsdl-ttf2.0-0", "libfontconfig1-dev", "gtk+-2.0", "gconf-2.0"]
+$jsmess_deps = ["git", "openjdk-6-jdk", "libsdl1.2debian", "libsdl1.2-dev", "libsdl-ttf2.0-0", "libfontconfig1-dev", "libsdl-ttf2.0-dev", "gtk+-2.0", "gconf2"]
 
 $clang_version = "3.2"
 $clang_dir = "clang+llvm-${clang_version}-x86-linux-ubuntu-12.04"
