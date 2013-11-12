@@ -12,5 +12,9 @@ Vagrant::Config.run do |config|
     puppet.manifests_path = "puppet/manifests"
     puppet.manifest_file = "jsmess.pp"
 	puppet.module_path = "puppet/modules"
-  end
+  end  
+end
+
+Vagrant.configure("2") do |config|
+  config.vm.network :forwarded_port, guest: 8000, host: 8001
 end
