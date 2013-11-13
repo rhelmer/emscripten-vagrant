@@ -66,7 +66,7 @@ class jsmess {
         alias => "git-submodules-jsmess",
         cwd => "/home/vagrant/src/jsmess",
         require => Package[$jsmess_deps],
-        creates => "/home/vagrant/src/jsmess/third_party/emscripten",
+        creates => "/home/vagrant/src/jsmess/third_party/emscripten/src",
         timeout => 1200
     }
 
