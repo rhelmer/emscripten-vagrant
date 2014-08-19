@@ -1,20 +1,26 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-Vagrant::Config.run do |config|
-  config.vm.box = "precise32"
-  config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-i386-vagrant-disk1.box"
+VAGRANTFILE_API_VERSION = "2"
 
-  # Boot with a GUI so you can see the screen. (Default is headless)
-  # config.vm.boot_mode = :gui
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.provision :puppet do |puppet|
-    puppet.manifests_path = "puppet/manifests"
-    puppet.manifest_file = "jsmess.pp"
-	puppet.module_path = "puppet/modules"
-  end  
-end
+  # Every Vagrant virtual environment requires a box to build off of.
+  config.vm.box = "ubuntu/trusty64"
 
-Vagrant.configure("2") do |config|
-  config.vm.network :forwarded_port, guest: 8000, host: 8001
+  config.vm.provider "virtualbox" do |v|
+    v.name = 'jsmess'
+    v.memory = 2048
+    v.cpus = 2
+  end
+
+  # Create a forwarded port mapping which allows access to a specific port
+  # within the machine from a port on the host machine. In the example below,
+  # accessing "localhost:8080" will access port 80 on the guest machine.
+  config.vm.network :forwarded_port, guest: 80, host: 8080
+
+  # Yes, we're using a shell script. None of your fancy Punchible configuration
+  # management tooling here! A shell script was good enough for my grandma,
+  # and it's good enough for me!
+  config.vm.provision "shell", path: "bootstrap.sh"
 end
