@@ -60,6 +60,3 @@ $ vagrant up
 ####Virtualbox emits `The guest additions on this VM do not match the installed version of VirtualBox`
 
 I'm going to assume that, as the warning says, this is probably fine.
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/yozlet/jsmess-vagrant/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
