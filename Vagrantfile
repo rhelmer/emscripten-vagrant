@@ -23,4 +23,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # management tooling here! A shell script was good enough for my grandma,
   # and it's good enough for me!
   config.vm.provision "shell", path: "bootstrap.sh"
+
+  # Your bios and games folders are shared into /home/ubuntu/
+  config.vm.synced_folder "bios/", "/home/ubuntu/bios"
+  config.vm.synced_folder "games/", "/home/ubuntu/games"
 end

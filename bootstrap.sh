@@ -3,11 +3,14 @@
 # Commands and other details taken from
 # https://github.com/jsmess/jsmess/wiki/How-to-build-and-test-JSMESS-0.153
 
-# Configurable constants
+# EDIT THESE to match the game and bios you've copied into the games/ and
+# bios/ folders
 export MESS_TEST_PLATFORM=coleco
 export MESS_TEST_GAME_FILE=smurfs.rom
-export MESS_GAME_DIR=/vagrant/games
-export MESS_BIOS_DIR=/vagrant/bios
+
+# Tweak these if needed
+export MESS_GAME_DIR=/home/ubuntu/games
+export MESS_BIOS_DIR=/home/ubuntu/bios
 
 # Preliminaries
 export DEBIAN_FRONTEND=noninteractive
