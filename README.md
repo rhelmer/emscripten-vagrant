@@ -15,6 +15,11 @@ This doesn't work yet. Still working on fixing it.
 * Ripped out Puppet, using shell script instead
 * Now using Ubuntu 14.04 (Trusty)
 
+##To Do
+* Make it actually work
+* Write some basic tests
+* Get some kind of continuous integration running
+
 ##Help!
 
 As you can see, I'm still a long way from having a working VM.
@@ -38,10 +43,12 @@ functioning, so dive in and help me.
 Here are some common vagrant operations:
 
 * SSH into your VM (jsmess is checked out in ~vagrant/src/jsmess):
+
 ```
 $ vagrant ssh
-``````
+```
 * Destroy VM and rebuild from scratch
+
 ```
 $ vagrant destroy
 
