@@ -24,7 +24,6 @@ cd jsmess
 git submodule update --init --recursive
 
 # Link games/ and bios/
-cd ..
 rm -rf games bios
 ln -s $MESS_GAME_DIR
 ln -s $MESS_BIOS_DIR
@@ -42,12 +41,12 @@ cd ../..
 mkdir build
 cd build
 ../configure --enable-optimized --disable-assertions --enable-targets=host,js
-make -j 4 install
+make -j 4 
 ../../emscripten/emcc
 
 # Helpers
 cd ../../../helpers
-sudo chown vagrant .
+sudo chown `whoami` .
 ./genhelpers.sh
 
 # If you want MAME, uncomment these lines
