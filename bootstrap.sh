@@ -16,7 +16,7 @@ export MESS_BIOS_DIR=/home/ubuntu/bios
 export DEBIAN_FRONTEND=noninteractive
 
 sudo apt-get update
-sudo apt-get install -y git g++ nodejs qt4-default libsdl-dev libsdl-ttf2.0-dev libfontconfig1-dev libxinerama-dev
+sudo apt-get install -y git make g++ nodejs qt4-default libsdl-dev libsdl-ttf2.0-dev libfontconfig1-dev libxinerama-dev openjdk-7-jre
 
 # Let's get down to business
 git clone https://github.com/jsmess/jsmess.git
